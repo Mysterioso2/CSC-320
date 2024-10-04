@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class CriticalThinkingFinal{
-
 
     //create a method with an array in it for car make
     public static ArrayList<String> carMake = new ArrayList<>();
@@ -10,34 +8,33 @@ public class CriticalThinkingFinal{
     public static ArrayList<String> carColor = new ArrayList<>();
     public static ArrayList<Integer> carYear = new ArrayList<>();
     public static ArrayList<Integer> carMileage = new ArrayList<>();
-
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+            //Give the array some values
+            //vehicle 1
             carMake.add("Toyota");
             carModel.add("Camry");
             carYear.add(2010);
             carColor.add("Black");
             carMileage.add(100000);
-
+            //vehicle 2
             carMake.add("Ford");
             carModel.add("F150");
             carYear.add(2015);
             carColor.add("Red");
             carMileage.add(50000);
-
+            //vehicle 3
             carMake.add("Chevy");
             carModel.add("Silverado");
             carYear.add(2018);
             carColor.add("Blue");
             carMileage.add(30000);
-
+        //create while statement to keep the program running until the user exits using a boolean
         boolean exit = false;
         while(exit == false){ 
-
     
-
+            //create a menu for the user to select from
             System.out.println("******************************************************************************");
             System.out.println("*                                                                            *");  
             System.out.println("*          Welcome to the Vehicle Inventory Program.                         *");
@@ -54,35 +51,36 @@ public class CriticalThinkingFinal{
             System.out.println("*                                                                            *");  
             System.out.println("******************************************************************************");
             int userMenuSelection = scanner.nextInt();
-
+            //create a switch statement to allow the user to select an option corresponding to the menu above
             switch(userMenuSelection){
+                //case 1 will list all vehicles
                 case 1:
                     printAllVehicles();
                     System.out.println("\n\n");
                     break;
-
+                //case 2 will add a vehicle
                 case 2:
                     System.out.println("\n\n");
                     addVehicle();
                     System.out.println("\n\n");
                     break;
-
+                //case 3 will remove a vehicle
                 case 3:
                     System.out.println("\n\n");
                     removeVehicle();
                     System.out.println("\n\n");
                     break;
-
+                //case 4 will update a vehicle
                 case 4:
                     System.out.println("\n\n");
                     updateVehicle();
                     System.out.println("\n\n");
                     break;
-
+                //case 5 will exit the program
                 case 5:
                     exit = true;
                     break;
-
+                //default will print an error message if the user enters an invalid entry this will then exit and reprint the menu from the while loop
                 default:
                     System.out.println("\n\n");
                     System.out.println("Invalid entry. Please try again.");
@@ -90,149 +88,155 @@ public class CriticalThinkingFinal{
                     break;
             }
         }
+        //exit message and flip boolean to true to exit the program
         if(exit == true){
-            System.out.println("Goodbye!");
+            System.out.println("******************************************************************************");
+            System.out.println("*                                                                            *");
+            System.out.println("*                              Goodbye!                                      *");
+            System.out.println("*                                                                            *");
+            System.out.println("******************************************************************************");
         }
     }
-
-    //create a method to list all vehicles
+    //method to list all vehicles
     public static void printAllVehicles(){
         System.out.println("\n\n");
         System.out.println("\n\nCurrent Inventory: ");
-
+        //create a for loop to print all vehicles using i++ and correct formating for visual ease
         for(int i = 0; i < carMake.size(); i++){
             System.out.println( "Vehicle " + (i + 1) + ": "+ carMake.get(i) + " " + carModel.get(i) + " " + carYear.get(i) + " " + carColor.get(i) + " " +  carMileage.get(i) + " miles.");
         }
     }
-
-    //create a method to add a vehicle
+    //method to add a vehicle
     public static void addVehicle(){
         System.out.println("\n\n");
         Scanner scanner = new Scanner(System.in);
-
+        //prompt the user to enter the make and add the user input to the array
         System.out.print("Please enter the make of the vehicle   : ");
         String addMake = scanner.nextLine();
         carMake.add(addMake);
-
+        //prompt the user to enter the model and add the user input to the array
         System.out.print("Please enter the model of the vehicle  : ");
         String addModel = scanner.nextLine();
         carModel.add(addModel);
-
+        //prompt the user to enter the year and add the user input to the array
         System.out.print("Please enter the year of the vehicle   : ");
         int addYear = scanner.nextInt();
         carYear.add(addYear);
-
+        //prompt the user to enter the color and add the user input to the array
         System.out.print("Please enter the color of the vehicle  : ");
         String addColor = scanner.nextLine();
         addColor = scanner.nextLine();
         carColor.add(addColor);
-
+        //prompt the user to enter the mileage and add the user input to the array
         System.out.print("Please enter the mileage of the vehicle: ");
         int addMileage = scanner.nextInt();
         carMileage.add(addMileage);
+        //confirmation message
+        System.out.println("The new vehicle has been added.");
     }
 
 
-
-    //create a method to remove a vehicle
+    //method to remove a vehicle
     public static void removeVehicle(){
         System.out.println("\n\n");
-
+        //print vehicles so the user can see the list of vehicles
         Scanner scanner = new Scanner(System.in);
         printAllVehicles();
-
+        //prompt the user to enter the number of the vehicle they would like to remove (all vehicles are already numbered just catch user input)
         System.out.print("Please enter the number of the vehicle you would like to remove: ");
         int userRemove = scanner.nextInt();
+        //array starts at 0 so subtract 1 from the user input to get the correct index
         userRemove = userRemove - 1;
+        //remove all attributes of the vehicle at the index the user selected
         carMake.remove(userRemove);
         carModel.remove(userRemove);
         carYear.remove(userRemove);
         carColor.remove(userRemove);
         carMileage.remove(userRemove);
+        //confirmation message
         System.out.println("Vehicle " + (userRemove + 1) + " has been removed.");
     }
 
 
-
-    //create a method to update a vehicle
+    //method to update a vehicle
     public static void updateVehicle(){
         System.out.println("\n\n");
         Scanner scanner = new Scanner(System.in);
+        //print all vehicles so user can see the list of vehicles
         printAllVehicles();
-
+        //prompt the user to enter the number of the vehicle they would like to update (all vehicles are already numbered just catch user input)
         System.out.println("Please enter the number of the vehicle you would like to update: ");
         int updateVehicle = scanner.nextInt();
+        //array starts at 0 so subtract 1 from the user input to get the correct index
         updateVehicle = updateVehicle - 1;
-
-        System.out.println("Please enter the attribute you would like to update: ");
-        System.out.println("       Make");
-        System.out.println("       Model");
-        System.out.println("       Year");
-        System.out.println("       Color");
-        System.out.println("       Mileage");
+        //prompt the user to enter the attribute they would like to update and catch it into the variable userUpdate
+        System.out.println("    Please type the attribute you would like to update: ");
+        System.out.println("         Make");
+        System.out.println("         Model");
+        System.out.println("         Year");
+        System.out.println("         Color");
+        System.out.println("         Mileage");
         String userUpdate = scanner.nextLine();
         userUpdate = scanner.nextLine();
         userUpdate.toLowerCase();
-
+        //create a switch statement that uses userUpdate to determine which attribute to update
         switch(userUpdate){
+            //case make will prompt the user to enter the new make and update the make of the vehicle at the index the user selected
             case "make":
                 System.out.println("Please enter the make of the vehicle: ");
                 String make = scanner.nextLine();
                 carMake.set(updateVehicle, make);
                 break;
+            //case model will prompt the user to enter the new model and update the model of the vehicle at the index the user selected
             case "model":
                 System.out.println("Please enter the model of the vehicle: ");
                 String model = scanner.nextLine();
                 carModel.set(updateVehicle, model);
                 break;
+            //case year will prompt the user to enter the new year and update the year of the vehicle at the index the user selected
             case "year":
                 System.out.println("Please enter the year of the vehicle: ");
                 int year = scanner.nextInt();
                 carYear.set(updateVehicle, year);
                 break;
+            //case color will prompt the user to enter the new color and update the color of the vehicle at the index the user selected
             case "color":
                 System.out.println("Please enter the color of the vehicle: ");
                 String color = scanner.nextLine();
                 carColor.set(updateVehicle, color);
                 break;
+            //case mileage will prompt the user to enter the new mileage and update the mileage of the vehicle at the index the user selected
             case "mileage":
                 System.out.println("Please enter the mileage of the vehicle: ");
                 int mileage = scanner.nextInt();
                 carMileage.set(updateVehicle, mileage);
                 break;
-
+            //default will print an error message if the user enters an invalid option. The main menu will then be reprinted and the user will have to reselect update a vehile
             default:
                 System.out.println("Invalid entry. Please try again.");
                 break;
         }
 
-
         /* 
-
-        if the switch statement doesnt work we can make them do the whole thing
-
+        //saving this incase the switch statement doesnt work - however it is working so this is not needed
+        if the switch statement doesnt work we can make them enter the whole vehicle information again
         System.out.println("Please enter the make of the vehicle: ");
         String make = scanner.nextLine();
         carMake.set(userUpdate, make);
-
         System.out.println("Please enter the model of the vehicle: ");
         String model = scanner.nextLine();
         carModel.set(userUpdate, model);
-
         System.out.println("Please enter the year of the vehicle: ");
         int year = scanner.nextInt();
         carYear.set(userUpdate, year);
-
         System.out.println("Please enter the color of the vehicle: ");
         String color = scanner.nextLine();
         carColor.set(userUpdate, color);
-
         System.out.println("Please enter the mileage of the vehicle: ");
         int mileage = scanner.nextInt();
         carMileage.set(userUpdate, mileage);
         */
     }
-
 
 
 }
